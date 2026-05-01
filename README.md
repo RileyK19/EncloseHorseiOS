@@ -167,3 +167,5 @@ EncloseHorse/
 The daily puzzle tab scrapes enclose.horse for new puzzles, but only once per day — after that, the puzzle is cached in Supabase and the site is never hit again. Infinite mode is entirely self-contained: the generator, BFS engine, scoring, and persistence are all on-device with no external dependencies.
 
 This project is not affiliated with enclose.horse or its creator. Built for personal use and to gain experience developing in Swift.
+
+If you have any concerns about this repository, feel free to reach out via the [feedback form](https://docs.google.com/forms/d/e/1FAIpQLSf_Nw9Ya6GYcBB4_juWdAkzcwwR7HHzfdrf_xoaPfCYHPp7VQ/viewform?usp=publish-editor) or open a GitHub issue.
