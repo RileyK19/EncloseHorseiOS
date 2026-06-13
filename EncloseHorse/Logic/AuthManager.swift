@@ -41,7 +41,7 @@ class AuthManager: ObservableObject {
     @Published var error: String?
 
     private let sessionKey       = "supabase_session"
-    private let supabaseAuthURL  = Constants.supabaseURL
+    private let supabaseAuthURL  = Constants.supabaseAuthURL
     private let supabaseAnonKey  = Constants.supabaseKey
 
     var isSignedIn: Bool {
@@ -275,6 +275,7 @@ class AuthManager: ObservableObject {
         req.httpBody = try? JSONSerialization.data(withJSONObject: ["refresh_token": session.refreshToken])
 
         guard let (data, response) = try? await URLSession.shared.data(for: req) else { return }
+        print("🔐 Auth response: \(String(data: data, encoding: .utf8) ?? "nil")")
 
         // 400/401 means refresh token itself expired — sign out cleanly
         if let http = response as? HTTPURLResponse, http.statusCode >= 400 {
@@ -331,6 +332,7 @@ class AuthManager: ObservableObject {
         req.httpBody = try JSONSerialization.data(withJSONObject: body)
 
         let (data, resp) = try await URLSession.shared.data(for: req)
+        print("🔐 Auth response: \(String(data: data, encoding: .utf8) ?? "nil")")
 
         guard let http = resp as? HTTPURLResponse, http.statusCode == 200 else {
             throw AuthError.supabaseExchangeFailed
